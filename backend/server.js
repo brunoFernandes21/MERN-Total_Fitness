@@ -1,8 +1,11 @@
 const express = require("express")
-const workoutRoutes = require('./controllers/workouts')
+const mongoose = require('mongoose')
+const workoutRoutes = require('./routes/workouts')
+mongoose.set('strictQuery', true)
 require('dotenv').config()
 //express app
 const app = express()
+
 //middleware
 
 //allows us to send post body to server in post request
@@ -14,10 +17,16 @@ app.use((request, response, next) => {
 
 //routes 
 app.use('/api/workouts', workoutRoutes)
-
-//listen for requests
-const port = process.env.PORT
-app.listen(port, () => {
-    console.log("listening on port", port)
+//connect to db
+mongoose.connect(process.env.MONGO_URI)
+.then(() => {
+    //listen for requests
+    const port = process.env.PORT
+    app.listen(port, () => {
+        console.log(" connected to db and listening on port", port)
+    })
+}).catch((error) => {
+    console.log(error)
 })
+
 
