@@ -1,0 +1,18 @@
+GET http://localhost:5000/api/workouts
+
+###
+
+GET http://localhost:5000/api/workouts/1234
+
+###
+
+POST http://localhost:5000/api/workouts
+
+###
+
+DELETE http://localhost:5000/api/workouts/676798
+
+###
+
+PATCH http://localhost:5000/api/workouts/97877
+
