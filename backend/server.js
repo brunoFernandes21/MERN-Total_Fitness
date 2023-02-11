@@ -1,20 +1,21 @@
 const express = require("express")
 const mongoose = require('mongoose')
-const workoutRoutes = require('./routes/workouts')
+const workoutRoutes = require('./routes/Workouts')
+
 mongoose.set('strictQuery', true)
 require('dotenv').config()
 //express app
 const app = express()
-
 //middleware
-
 //allows us to send post body to server in post request
 app.use(express.json()) 
+
+//this allows us to do something between each request.
+// in this case, we console.log() between each request
 app.use((request, response, next) => {
     console.log(request.path, request.method)
     next()
 }) 
-
 //routes 
 app.use('/api/workouts', workoutRoutes)
 //connect to db
