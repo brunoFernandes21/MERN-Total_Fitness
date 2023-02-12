@@ -2,7 +2,7 @@ GET http://localhost:5000/api/workouts
 
 ###
 
-GET http://localhost:5000/api/workouts/62e7519c3bbe9893f81880f2
+GET http://localhost:5000/api/workouts/63e7519c3bbe9893f81880f2
 
 ###
 
@@ -10,16 +10,22 @@ POST http://localhost:5000/api/workouts
 Content-type: application/json
 
 {
-    "title": "Dumbell Press",
+    "title": "Shoulder Press",
     "load": 20,
     "reps": 10
 }
 
 ###
 
-DELETE http://localhost:5000/api/workouts/676798
+DELETE http://localhost:5000/api/workouts/63e76ff3c611401eba60cbd2
 
 ###
 
-PATCH http://localhost:5000/api/workouts/97877
+PATCH http://localhost:5000/api/workouts/63e95cfba419ba106ebc152c
+Content-type: application/json
 
+{
+    "title": "Shoulder Press",
+    "load": 10,
+    "reps": 50
+}
