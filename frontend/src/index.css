@@ -14,7 +14,7 @@
 body {
   margin: 0;
   padding: 0;
-  min-height: 100vh;
+  min-height: 200vh;
   color: white;
   font-family: 'Courier New', Courier, monospace;
   background: linear-gradient(90deg, rgba(131,58,180,1) 12%, rgba(10,79,187,1) 100%);
@@ -34,7 +34,7 @@ header .nav {
 }
 
 header a {
-  color: #232946;
+  color: var(--primary);
   text-decoration: none;
 }
 
@@ -48,6 +48,7 @@ header a {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 100px;
+  border: 3px solid red;
 }
 
 .workout__details {
@@ -83,6 +84,16 @@ header a {
   color: #232946;
 }
 /* new workout form */
+
+.workout__form {
+  position: sticky;
+  top: 0;
+}
+.create {
+  background: transparent;
+  border: 2px solid black;
+}
+
 label, input {
   display: block;
 }
@@ -104,6 +115,7 @@ form button {
   color: #fff;
   padding: 15px;
   border-radius: 50px;
+  font-size: 16px;
   font-weight: 900;
   font-family: 'Courier New', Courier, monospace;
   cursor: pointer;

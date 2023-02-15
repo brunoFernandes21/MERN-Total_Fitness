@@ -31,7 +31,10 @@ const Home = () => {
       {!isLoading && allWorkouts}
       {isLoading && <h1>Loading</h1>}
       </div>
-      <WorkoutForm/>
+      <div className="workout__form">
+        <WorkoutForm/>
+      </div>
+      
     </div>
   )
 }

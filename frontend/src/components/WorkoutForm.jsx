@@ -44,13 +44,13 @@ const WorkoutForm = () => {
   };
 
   return (
-    <div className=" sticky rounded-lg shadow-md text-black w-full bg-white p-5 mt-5 mb-60">
+    <div className="create rounded-lg shadow-md text-white bg-white p-5 mt-5 mb-60">
       {error && (
         <div className='bg-red-100 border mb-5 border-red-900 text-red-700 px-4 py-3 rounded relative" role="alert"'>
           <span className="font-bold">{error}</span>
         </div>
       )}
-      <form className="create border-2">
+      <form>
       <h3 className="text-center">Add a New Workout</h3>
       <label>Exercise Title: </label>
       <input
