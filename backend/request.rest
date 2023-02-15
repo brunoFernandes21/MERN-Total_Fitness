@@ -10,9 +10,9 @@ POST http://localhost:5000/api/workouts
 Content-type: application/json
 
 {
-    "title": "Shoulder Press",
-    "load": 20,
-    "reps": 10
+    "title": "Leg Press",
+    "load": 40,
+    "reps": 8
 }
 
 ###
