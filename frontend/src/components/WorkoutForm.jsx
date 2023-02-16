@@ -42,9 +42,9 @@ const WorkoutForm = () => {
         // navigate('/');
       }
   };
-
+  //add for adjust size of form mt-5 mb-60
   return (
-    <div className="create rounded-lg shadow-md text-white bg-white p-5 mt-5 mb-60">
+    <div className="create rounded-lg shadow-md text-white bg-white p-5 mt-3">
       {error && (
         <div className='bg-red-100 border mb-5 border-red-900 text-red-700 px-4 py-3 rounded relative" role="alert"'>
           <span className="font-bold">{error}</span>

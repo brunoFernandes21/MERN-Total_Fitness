@@ -29,9 +29,9 @@ const Home = () => {
     <div className='home'>
       <div className="workouts">
       {!isLoading && allWorkouts}
-      {isLoading && <h1>Loading</h1>}
+      {isLoading && <h1>Loading...</h1>}
       </div>
-      <div className="workout__form">
+      <div className="sticky top-32 self-start">
         <WorkoutForm/>
       </div>
       
