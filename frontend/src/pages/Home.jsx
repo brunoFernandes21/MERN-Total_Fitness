@@ -63,7 +63,7 @@ const Home = () => {
       {!isLoading && allWorkouts}
       {isLoading && <h1>Loading...</h1>}
       </div>
-      <div className="sticky top-28 self-start mt-5 hover:shadow-xl">
+      <div className="workout__form sticky top-28 self-start mt-5 hover:shadow-xl">
         <WorkoutForm/>
       </div>
       

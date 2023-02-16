@@ -88,10 +88,15 @@ header a {
 
 .workout__details .delete {
   position: absolute;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
   top: 20px;
   right: 20px;
   cursor: pointer;
-  /* border-radius: 50%; */
+  padding: 6px;
+  background: #f5dfdf;
+  border-radius: 50%;
 }
 /* new workout form */
 .error, input.error {
@@ -119,7 +124,7 @@ input {
   margin-top: 10px;
   margin-bottom: 20px;
   width: 100%;
-  border: 1px solid #053fab;
+  border: none;
   border-radius: 5px;
   box-sizing: border-box;
 }
@@ -146,10 +151,18 @@ form button {
 
 /* mobile layout */
 
-@media (max-width: 858px) {
+@media only screen and (max-width: 900px) {
+  header .nav {
+    justify-content: center;
+  }
   .home {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 0px;
+  }
+  .workout__form {
+    order: -1;
+    position: static;
+    margin-bottom: 20px;
   }
 }
