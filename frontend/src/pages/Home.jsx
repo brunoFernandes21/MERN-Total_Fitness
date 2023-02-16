@@ -11,8 +11,9 @@ const Home = () => {
 
   const { workouts, setWorkouts } = useContext(WorkoutContext)
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null)
 
-
+  //fetch all workouts when page loads up
   useEffect(() => {
      const fetchWorkouts = async () => {
       const response = await fetch('http://localhost:5000/api/workouts')
@@ -25,11 +26,34 @@ const Home = () => {
      fetchWorkouts()
   },[])
 
-  
+  //deleting a workout
+  const deleteWorkout = async (id) => {
+    try {
+      await fetch(`http://localhost:5000/api/workouts/${id}`, {
+        method: 'DELETE'
+      })
+      console.log(`Workout with id: ${id} has been deleted`)
+    } catch (error) {
+      setError(error.message)
+    }
+    const filteredWorkouts = workouts.filter((workout) => {
+      return workout._id !== id
+    })
+    setWorkouts(filteredWorkouts)
+
+  }
+  //display workoutDetails component 
+  //which is a single workout object
   const allWorkouts = workouts.map((workout) => (
-    <WorkoutDetails key={workout._id} workout={workout}/>
+    <WorkoutDetails 
+    key={workout._id} 
+    workout={workout} 
+    onDelete={deleteWorkout}
+    />
   ))
-  // console.log(allWorkouts)
+
+  
+
   return (
     <div className='home'>
       <div className="workouts">

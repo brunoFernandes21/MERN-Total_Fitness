@@ -30,7 +30,7 @@ body {
 header{
   /* background-color: #232946; */
   background: linear-gradient(90deg, rgba(131,58,180,1) 12%, rgba(10,79,187,1) 100%);
-
+  border-bottom: 3px solid #fff;
 }
 
 header .nav {
@@ -77,7 +77,7 @@ header a {
 .workout__details h3 {
   margin: 0 0 10px 0;
   font-size: 1.2em;
-  color: var(--primary);
+  color: rgba(10,79,187,1);
 }
 
 .workout__details p {
@@ -104,7 +104,7 @@ header a {
 } */
 .create {
   background: transparent;
-  border: 2px solid black;
+  border: 3px solid #fff;
   box-shadow: 0px 0px 4px 4px rgba(0,0,0,0.2);
 }
 
