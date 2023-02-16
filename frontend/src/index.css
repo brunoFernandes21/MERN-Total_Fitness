@@ -10,18 +10,27 @@
   --primary: #007bff;
   --error: #e7195a;
 }
+/* SEGA FONT  */
+@font-face {
+  font-family: 'SEGA LOGO FONT';
+  font-style: normal;
+  font-weight: normal;
+  src: local('SEGA LOGO FONT'), url('SEGA.woff') format('woff');
+}
 
 body {
   margin: 0;
   padding: 0;
-  min-height: 200vh;
+  min-height: 100vh;
   color: white;
   font-family: 'Courier New', Courier, monospace;
   background: linear-gradient(90deg, rgba(131,58,180,1) 12%, rgba(10,79,187,1) 100%);
 }
 
-header {
-  background-color: #fff;
+header{
+  /* background-color: #232946; */
+  background: linear-gradient(90deg, rgba(131,58,180,1) 12%, rgba(10,79,187,1) 100%);
+
 }
 
 header .nav {
@@ -32,10 +41,14 @@ header .nav {
   justify-content: space-between;
   align-items: center;
 }
-
+header .nav__logo {
+  font-family: 'SEGA LOGO FONT';
+  font-weight: 200;
+}
 header a {
-  color: var(--primary);
+  color: #fff;
   text-decoration: none;
+
 }
 
 .pages {
@@ -59,7 +72,6 @@ header a {
   padding: 20px;
   position: relative;
   box-shadow: 0px 0px 4px 4px rgba(0,0,0,0.2);
-  /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 }
 
 .workout__details h3 {
@@ -85,7 +97,9 @@ header a {
   color: #232946;
 }
 /* new workout form */
-
+.error {
+  border: 2px solid rgb(185 28 28);
+}
 /* .workout__form {
   position: sticky;
   top: 30px;
@@ -94,6 +108,7 @@ header a {
 .create {
   background: transparent;
   border: 2px solid black;
+  box-shadow: 0px 0px 4px 4px rgba(0,0,0,0.2);
 }
 
 label, input {
@@ -108,15 +123,15 @@ input {
   margin-bottom: 20px;
   width: 100%;
   border: 1px solid #053fab;
-  border-radius: 50px;
+  border-radius: 5px;
   box-sizing: border-box;
 }
 form button {
-  background: var(--primary);
+  background: #000;
   border: 0;
   color: #fff;
   padding: 15px;
-  border-radius: 50px;
+  border-radius: 5px;
   font-size: 16px;
   font-weight: 900;
   font-family: 'Courier New', Courier, monospace;

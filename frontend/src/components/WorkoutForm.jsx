@@ -1,11 +1,14 @@
-import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+//context api
+import { WorkoutContext } from '../context/WorkoutContext'
+import FormHeader from "./FormHeader";
 
 const WorkoutForm = () => {
-  const [formData, setFormData] = useState({ title: "", load: "", reps: "" });
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-//   const navigate = useNavigate();
+  const [ formData, setFormData] = useState({ title: "", load: "", reps: "" });
+  const [ isLoading, setIsLoading] = useState(false);
+  const [ error, setError] = useState(null);
+  const { workouts, setWorkouts } = useContext(WorkoutContext)
+  const [ showForm, setShowForm] = useState(false)
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -33,49 +36,53 @@ const WorkoutForm = () => {
 
       if (!response.ok) {
         setError(data.error);
+        setIsLoading(false);
       }
       if(response.ok) {
         setError(null)
         setIsLoading(false);
+        setWorkouts([data, ...workouts])
         setFormData({ title: "", load: "", reps: "" });
         console.log("New workout added", data)
-        // navigate('/');
       }
   };
+  const showAddForm = () => {
+    setShowForm(!showForm)
+  }
   //add for adjust size of form mt-5 mb-60
   return (
-    <div className="create rounded-lg shadow-md text-white bg-white p-5 mt-3">
+    <div className="create rounded-lg text-white bg-white p-5">
+      <FormHeader onAdd={showAddForm} showForm={showForm}/>
+      {showForm && <form>
+        <label>Exercise Title </label>
+        <input
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+        />
+        <label>Load(in kg) </label>
+        <input
+          type="number"
+          name="load"
+          value={formData.load}
+          onChange={handleChange}
+        />
+        <label>Reps </label>
+        <input
+          type="number"
+          name="reps"
+          value={formData.reps}
+          onChange={handleChange}
+        />
+        {!isLoading && <button onClick={handleSubmit}>Add Workout</button>}
+        {isLoading && <button disabled>Adding...</button>}
+      </form>}
       {error && (
-        <div className='bg-red-100 border mb-5 border-red-900 text-red-700 px-4 py-3 rounded relative" role="alert"'>
+        <div className='error bg-red-100 mt-5 text-red-700 px-4 py-3 rounded relative" role="alert"'>
           <span className="font-bold">{error}</span>
         </div>
       )}
-      <form>
-      <h3 className="text-center">Add a New Workout</h3>
-      <label>Exercise Title: </label>
-      <input
-        type="text"
-        name="title"
-        value={formData.title}
-        onChange={handleChange}
-      />
-      <label>Load(in kg): </label>
-      <input
-        type="number"
-        name="load"
-        value={formData.load}
-        onChange={handleChange}
-      />
-      <label>Reps: </label>
-      <input
-        type="number"
-        name="reps"
-        value={formData.reps}
-        onChange={handleChange}
-      />
-      {!isLoading && <button onClick={handleSubmit}>Add Workout</button>}
-      {isLoading && <button disabled>Adding...</button>}
-    </form>
     </div>
     
   );

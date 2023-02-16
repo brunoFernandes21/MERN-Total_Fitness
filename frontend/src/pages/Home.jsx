@@ -1,13 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 
 //components
 import WorkoutDetails from '../components/WorkoutDetails'
 import WorkoutForm from '../components/WorkoutForm'
 
+//context api
+import { WorkoutContext } from '../context/WorkoutContext'
+
 const Home = () => {
 
-  const [ workouts, setWorkouts ] = useState([])
-  const [ isLoading, setIsLoading ] = useState(true)
+  const { workouts, setWorkouts } = useContext(WorkoutContext)
+  const [isLoading, setIsLoading] = useState(false);
+
 
   useEffect(() => {
      const fetchWorkouts = async () => {
@@ -20,6 +24,7 @@ const Home = () => {
      }
      fetchWorkouts()
   },[])
+
   
   const allWorkouts = workouts.map((workout) => (
     <WorkoutDetails key={workout._id} workout={workout}/>
@@ -31,7 +36,7 @@ const Home = () => {
       {!isLoading && allWorkouts}
       {isLoading && <h1>Loading...</h1>}
       </div>
-      <div className="sticky top-32 self-start">
+      <div className="sticky top-28 self-start mt-5 hover:shadow-xl">
         <WorkoutForm/>
       </div>
       
