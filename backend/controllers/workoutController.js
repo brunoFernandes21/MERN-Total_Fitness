@@ -6,7 +6,7 @@ const { ObjectId } = require("mongodb");
 const getWorkouts = async (request, response) => {
   //fetch all docs, sort in ascending order
   //and store in variable workouts
-  const workouts = await Workout.find({}).sort({ createAt: -1 });
+  const workouts = await Workout.find({}).sort({ createdAt: -1 });
   //send workouts to cliend as json docs
   response.status(200).json(workouts);
 };
