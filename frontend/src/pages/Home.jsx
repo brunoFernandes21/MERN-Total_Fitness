@@ -29,17 +29,20 @@ const Home = () => {
   //deleting a workout
   const deleteWorkout = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/workouts/${id}`, {
+      const response = await fetch(`http://localhost:5000/api/workouts/${id}`, {
         method: 'DELETE'
       })
-      console.log(`Workout with id: ${id} has been deleted`)
+      if(response.ok) {
+        const filteredWorkouts = workouts.filter((workout) => {
+          return workout._id !== id
+        })
+        setWorkouts(filteredWorkouts)
+        console.log(`Workout with id: ${id} has been deleted`)
+      }
+      
     } catch (error) {
       setError(error.message)
     }
-    const filteredWorkouts = workouts.filter((workout) => {
-      return workout._id !== id
-    })
-    setWorkouts(filteredWorkouts)
 
   }
   //display workoutDetails component 

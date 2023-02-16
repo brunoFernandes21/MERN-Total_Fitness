@@ -94,7 +94,7 @@ header a {
   /* border-radius: 50%; */
 }
 /* new workout form */
-.error {
+.error, input.error {
   border: 2px solid rgb(185 28 28);
 }
 /* .workout__form {

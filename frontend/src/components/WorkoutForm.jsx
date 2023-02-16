@@ -9,6 +9,8 @@ const WorkoutForm = () => {
   const [ error, setError] = useState(null);
   const { workouts, setWorkouts } = useContext(WorkoutContext)
   const [ showForm, setShowForm] = useState(false)
+  const [emptyFields, setEmptyFields] = useState([])
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -37,11 +39,13 @@ const WorkoutForm = () => {
 
     if (!response.ok) {
       setError(data.error);
+      setEmptyFields(data.emptyFields)
       setIsLoading(false);
     }
 
     if(response.ok) {
       setError(null)
+      setEmptyFields([])
       setIsLoading(false);
       setWorkouts([data, ...workouts])
       setFormData({ title: "", load: "", reps: "" });
@@ -55,6 +59,11 @@ const WorkoutForm = () => {
   return (
     <div className="create rounded-lg text-white p-5">
       <FormHeader onAdd={showAddForm} showForm={showForm}/>
+      {error && (
+        <div className='error bg-red-100 mb-5 text-red-700 px-4 py-3 rounded relative" role="alert"'>
+          <span className="font-bold">{error}</span>
+        </div>
+      )}
       {showForm && <form>
         <label>Exercise Title </label>
         <input
@@ -62,6 +71,7 @@ const WorkoutForm = () => {
           name="title"
           value={formData.title}
           onChange={handleChange}
+          className={emptyFields.includes('title') ? 'error' : ''}
         />
         <label>Load(in kg) </label>
         <input
@@ -69,6 +79,7 @@ const WorkoutForm = () => {
           name="load"
           value={formData.load}
           onChange={handleChange}
+          className={emptyFields.includes('load') ? 'error' : ''}
         />
         <label>Reps </label>
         <input
@@ -76,15 +87,11 @@ const WorkoutForm = () => {
           name="reps"
           value={formData.reps}
           onChange={handleChange}
+          className={emptyFields.includes('reps') ? 'error' : ''}
         />
-        {!isLoading && <button onClick={handleSubmit}>Add Workout</button>}
-        {isLoading && <button disabled>Adding...</button>}
+        {!isLoading && <button onClick={handleSubmit}>Create Workout</button>}
+        {isLoading && <button disabled>Creating...</button>}
       </form>}
-      {error && (
-        <div className='error bg-red-100 mt-5 text-red-700 px-4 py-3 rounded relative" role="alert"'>
-          <span className="font-bold">{error}</span>
-        </div>
-      )}
     </div>
     
   );
