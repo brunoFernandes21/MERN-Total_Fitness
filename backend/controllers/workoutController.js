@@ -6,7 +6,7 @@ const { ObjectId } = require("mongodb");
 const getWorkouts = async (request, response) => {
   //fetch all docs, sort in ascending order
   //and store in variable workouts
-  const workouts = await Workout.find({}).sort({ createAt: -1 });
+  const workouts = await Workout.find({}).sort({ createdAt: -1 });
   //send workouts to cliend as json docs
   response.status(200).json(workouts);
 };
@@ -31,7 +31,26 @@ const getWorkout = async (request, response) => {
 //CREATE NEW WORKOUT
 const createWorkout = async (request, response) => {
   const { title, load, reps } = request.body;
-  //add doc to db
+  //add doc to db 
+
+  //check if all fields are filled
+  let emptyFields = []
+
+  if(!title) {
+    emptyFields.push('title')
+  }
+  if(!load) {
+    emptyFields.push('load')
+  }
+  if(!reps) {
+    emptyFields.push('reps')
+  }
+
+  //send error message if theres empty fields and exit function
+  if(emptyFields.length > 0) {
+    return response.status(400).json({ error: "Please fill in all the fields", emptyFields })
+  }
+  //if all fields are filled in add new workout
   try {
     const workout = await Workout.create({ title, load, reps });
     response.status(200).json(workout);

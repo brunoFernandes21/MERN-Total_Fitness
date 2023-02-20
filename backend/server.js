@@ -1,6 +1,6 @@
 const express = require("express")
 const mongoose = require('mongoose')
-const workoutRoutes = require('./routes/Workouts')
+const workoutRoutes = require('./routes/workouts')
 
 mongoose.set('strictQuery', true)
 require('dotenv').config()
@@ -9,7 +9,13 @@ const app = express()
 //middleware
 //allows us to send post body to server in post request
 app.use(express.json()) 
-
+//prevent CORS ERROR
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,DELETE,HEAD,OPTIONS,POST,PUT");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
+});
 //this allows us to do something between each request.
 // in this case, we console.log() between each request
 app.use((request, response, next) => {
