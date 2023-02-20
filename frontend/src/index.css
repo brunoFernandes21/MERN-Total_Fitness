@@ -95,7 +95,7 @@ header a {
   right: 20px;
   cursor: pointer;
   padding: 6px;
-  background: #f5dfdf;
+  /* background: #f5dfdf; */
   border-radius: 50%;
 }
 /* new workout form */

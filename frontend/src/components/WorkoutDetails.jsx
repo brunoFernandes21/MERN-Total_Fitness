@@ -6,7 +6,7 @@ const WorkoutDetails = ({ workout, onDelete }) => {
   return (
     <div className='workout__details'>
       <h3>{title}</h3>
-      <span className="delete">
+      <span className="delete transition-all hover:bg-red-100">
       <FaRegTrashAlt onClick={()=> onDelete(workout._id)} style={{color: 'red'}}/>
       </span>
       <div className="grid gap-2 mt-4">
