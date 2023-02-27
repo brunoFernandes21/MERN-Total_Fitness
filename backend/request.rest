@@ -29,3 +29,22 @@ Content-type: application/json
     "load": 10,
     "reps": 50
 }
+
+###
+POST http://localhost:5000/api/users/register
+Content-Type: application/json
+
+{
+    "email": "lete@test.com",
+    "password": "wQWEi1234jpychso!" 
+}
+
+###
+
+POST http://localhost:5000/api/users/login
+Content-Type: application/json
+
+{
+    "email": "lete@test.com",
+    "password": "wQWEi1234jpychso!"
+}

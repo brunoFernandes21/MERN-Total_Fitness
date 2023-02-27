@@ -1,6 +1,8 @@
 const express = require("express")
 const mongoose = require('mongoose')
+//importing routes
 const workoutRoutes = require('./routes/workouts')
+const userRoutes = require('./routes/user')
 
 mongoose.set('strictQuery', true)
 require('dotenv').config()
@@ -9,6 +11,8 @@ const app = express()
 //middleware
 //allows us to send post body to server in post request
 app.use(express.json()) 
+//this allows us to do something between each request.
+// in this case, we console.log() between each request
 //prevent CORS ERROR
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -16,14 +20,15 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   next();
 });
-//this allows us to do something between each request.
-// in this case, we console.log() between each request
+
 app.use((request, response, next) => {
     console.log(request.path, request.method)
     next()
 }) 
 //routes 
 app.use('/api/workouts', workoutRoutes)
+app.use('/api/users', userRoutes)
+
 //connect to db
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
