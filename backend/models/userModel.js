@@ -18,7 +18,6 @@ const userSchema = new Schema({
 
 //static register method
 userSchema.statics.register = async function(email, password) {
-
     // validation
     //check if email and passwords fields are filled
     if(!email || !password) { 
@@ -41,10 +40,34 @@ userSchema.statics.register = async function(email, password) {
     //hashing users password
     const salt = await bcrypt.genSalt()
     const hashedPassword = await bcrypt.hash(password, salt)
-    console.log(hashedPassword)
+    // console.log(hashedPassword)
 
     // storing user to db
     const user = await this.create({ email, password: hashedPassword})
+
+    return user
+
+}
+
+//static login method
+userSchema.statics.login = async function(email, password) {
+    //check if email and passwords fields are filled
+    if(!email || !password) { 
+        throw Error('All fields must be filled')
+    }
+
+    const user = await this.findOne({ email })
+
+    if(!user) {
+        throw Error('Incorrect email')
+    }
+
+    //compare passwords using bcrypt
+    const match = await bcrypt.compare(password, user.password)
+
+    if(!match) {
+        throw Error('Incorrect password')
+    }
 
     return user
 
